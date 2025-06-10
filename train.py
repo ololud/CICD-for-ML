@@ -70,6 +70,7 @@ trusted = [
     "sklearn.pipeline.Pipeline",
     "sklearn.preprocessing._data.StandardScaler",
     "sklearn.ensemble._forest.RandomForestClassifier",
+    "numpy.dtype",
 ]
 
 # Wczytujemy model z określeniem trusted typów
