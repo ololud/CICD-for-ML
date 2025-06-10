@@ -56,23 +56,21 @@ disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=pipe.classes_)
 disp.plot()
 plt.savefig("Results/model_results.png", dpi=120)
 
-from skops.io import load, get_untrusted_types
 import os
+from skops.io import dump, load
 
+# Tworzymy folder, jeśli nie istnieje
 os.makedirs("Model", exist_ok=True)
 
-# Zapisz pipeline
-from skops.io import dump
+# Zapisujemy pipeline
 dump(pipe, "Model/drug_pipeline.skops")
 
-# Wczytaj obiekt BEZ trust (to zadziała w większości wersji skops)
-with open("Model/drug_pipeline.skops", "rb") as f:
-    data = f.read()
+# Jawnie zdefiniowana lista zaufanych typów
+trusted = [
+    "sklearn.pipeline.Pipeline",
+    "sklearn.preprocessing._data.StandardScaler",
+    "sklearn.ensemble._forest.RandomForestClassifier",
+]
 
-# Wyciągnij niezaufane typy
-untrusted = get_untrusted_types(data)
-
-print(f"Untrusted types: {untrusted}")
-
-# Teraz ładuj z zaufanymi typami
-obj = load("Model/drug_pipeline.skops", trusted=untrusted)
+# Wczytujemy model z określeniem trusted typów
+pipe_loaded = load("Model/drug_pipeline.skops", trusted=trusted)
