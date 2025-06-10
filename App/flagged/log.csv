@@ -1,0 +1,3 @@
+Age,Sex,Blood Pressure,Cholesterol,Na_to_K,output,flag,username,timestamp
+35,,,,6.2,"{""label"": null, ""confidences"": null}",,,2025-06-10 18:21:02.019948
+35,F,LOW,NORMAL,16.6,"{""label"": ""Predicted Drug: DrugY"", ""confidences"": null}",,,2025-06-10 18:21:08.319800
