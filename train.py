@@ -57,12 +57,17 @@ disp.plot()
 plt.savefig("Results/model_results.png", dpi=120)
 
 import os
+from skops.io import dump, load, get_untrusted_types
+
+# Upewnij się, że folder Model istnieje
 os.makedirs("Model", exist_ok=True)
 
-sio.dump(pipe, "Model/drug_pipeline.skops")
-from skops.io import load, get_untrusted_types
+# Zapisz pipeline
+dump(pipe, "Model/drug_pipeline.skops")
 
-untrusted = get_untrusted_types("Model/drug_pipeline.skops")
+# Pobierz niezaufane typy z pliku
+untrusted = get_untrusted_types(path="Model/drug_pipeline.skops")
 print(f"Untrusted types: {untrusted}")  # dla debugowania
 
+# Wczytaj model z określeniem trusted typów
 obj = load("Model/drug_pipeline.skops", trusted=untrusted)
