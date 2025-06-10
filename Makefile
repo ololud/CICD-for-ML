@@ -3,6 +3,7 @@ install:
 		pip install -r requirements.txt
 
 format:
+	pip intall black
 	black *.py
 
 train:
