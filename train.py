@@ -7,7 +7,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 from sklearn.metrics import accuracy_score, f1_score
 import matplotlib
-matplotlib.use('Agg')  # Używa bezgłowego backendu, dobrego do serwerów/skryptów
+
+matplotlib.use("Agg")  # Używa bezgłowego backendu, dobrego do serwerów/skryptów
 
 import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
@@ -24,8 +25,8 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=125
 )
 
-cat_col = [1,2,3]
-num_col = [0,4]
+cat_col = [1, 2, 3]
+num_col = [0, 4]
 
 transform = ColumnTransformer(
     [
