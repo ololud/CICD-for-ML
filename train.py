@@ -60,4 +60,9 @@ import os
 os.makedirs("Model", exist_ok=True)
 
 sio.dump(pipe, "Model/drug_pipeline.skops")
-sio.load("Model/drug_pipeline.skops", trusted=True)
+from skops.io import load, get_untrusted_types
+
+untrusted = get_untrusted_types("Model/drug_pipeline.skops")
+print(f"Untrusted types: {untrusted}")  # dla debugowania
+
+obj = load("Model/drug_pipeline.skops", trusted=untrusted)
